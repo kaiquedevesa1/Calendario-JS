@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+main {
+  background-color: #ffffff;
+  display: flex;
+  height: 750px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 0 #b5b5b5;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  background-color: #f5f5f5;
+}
+.left-container {
+  width: 400px;
+  border-right: 1px solid #e5e7eb;
+  height: 100%;
+  padding: 30px;
+}
+
+.location {
+  margin-top: 40px;
+}
+
+.dropdown {
+  margin-top: 8px;
+}
+
+.duration {
+  margin-top: 16px;
+}
+
+.right-container {
+  width: 797.91px;
+  padding-top: 36px;
+  padding-inline: 25px;
+}
+
+.calendar {
+  display: flex;
+  margin-top: 40px;
+}
+
+.calendar-month {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 410px;
+  padding-left: 8px;
+}
+
+.prev-next img {
+  cursor: pointer;
+}
+.prev-next img:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+}
+
+.calendar-week {
+  display: flex;
+}
+.calendar-week p {
+  margin: auto;
+}
+
+.day-current::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-color: #d7e164;
+  border-radius: 50%;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  height: 60px;
+  width: 100%;
+  justify-content: center;
+}
+
+.days div {
+  display: flex;
+  align-items: center;
+}
+
+#day-23 {
+  background-color: #f4f6d3;
+  color: #d7e164;
+  border-radius: 100%;
+}
+#day-23:hover {
+  background-color: #d7e164;
+  color: #f4f6d3;
+  cursor: pointer;
+}
+
+#day-24 {
+  background-color: #f4f6d3;
+  color: #d7e164;
+  border-radius: 100%;
+}
+
+#day-24:hover {
+  background-color: #d7e164;
+  color: #f4f6d3;
+  cursor: pointer;
+}
+
+.container-buttons {
+  width: 300px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  font-size: 17px;
+}
+
+.container-buttons button {
+  width: 268px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid rgb(215 225 99);
+  background-color: white;
+  color: rgb(215 225 99);
+  font-size: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.container-buttons button:hover {
+  border-color: rgb(144, 151, 65);
+  color: rgb(144, 151, 65);
+  cursor: pointer;
+}
