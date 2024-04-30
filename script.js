@@ -55,11 +55,12 @@ function renderCalendar() {
   }
 
   // Evento de click nos dias
-  let availableDays = [23, 24];
-  let daysList = document.querySelectorAll(".days div");
+  let availableDays = [27, 28];
 
   availableDays.forEach((day) => {
-    let dayElement = daysList[day];
+    let daysList = document.querySelectorAll(".days .day");
+    console.log(daysList, daysList[day - 1]);
+    let dayElement = daysList[day - 1];
 
     dayElement.classList.add("day-available");
 
