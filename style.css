@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: Roboto;
 }
+
 main {
   background-color: #ffffff;
   display: flex;
@@ -37,14 +38,21 @@ body {
 }
 
 .right-container {
-  width: 797.91px;
+  width: 503px;
+  height: 750px;
   padding-top: 36px;
   padding-inline: 25px;
+  transition: all 0.1s ease;
+}
+
+.right-container.schedule {
+  width: 797px;
 }
 
 .calendar {
   display: flex;
   margin-top: 40px;
+  justify-content: space-between;
 }
 
 .calendar-month {
@@ -73,7 +81,7 @@ body {
 
 .day-current::after {
   content: "";
-  display: block;
+  display: flex;
   width: 5px;
   height: 5px;
   background-color: #d7e164;
@@ -84,48 +92,48 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   justify-items: center;
-  height: 60px;
-  width: 100%;
   justify-content: center;
+  width: 100%;
 }
 
-.days div {
+.day {
+  width: 100%;
+  height: 60px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-#day-23 {
-  background-color: #f4f6d3;
-  color: #d7e164;
-  border-radius: 100%;
-}
-#day-23:hover {
-  background-color: #d7e164;
-  color: #f4f6d3;
-  cursor: pointer;
-}
-
-#day-24 {
+.day-available {
   background-color: #f4f6d3;
   color: #d7e164;
   border-radius: 100%;
 }
 
-#day-24:hover {
+.day-available:hover {
   background-color: #d7e164;
   color: #f4f6d3;
   cursor: pointer;
+}
+
+.day-selected {
+  background-color: #d7e164;
+  color: #f4f6d3;
 }
 
 .container-buttons {
-  width: 300px;
+  width: 0px;
   height: 500px;
   display: flex;
   flex-direction: column;
-  padding: 16px;
   font-size: 17px;
+  overflow: hidden;
 }
 
+.container-buttons.schedule {
+  width: 300px;
+}
 .container-buttons button {
   width: 268px;
   height: 60px;

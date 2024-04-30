@@ -29,18 +29,10 @@ let months = [
   "December",
 ];
 
-function getFormattedDate(date) {
-  return `${(dayWeeks, [date.getDay()])}, ${months[date.getMonth()]}, ${date
-    .getFullYear()
-    .toString()
-    .substring(2)}`;
-}
-
-let selectedDay = document.getElementById("selected-day");
-
-// Inserindo datas e meses no calendario//
+//Calendario
 function renderCalendar() {
-  let currentDay = date.getDay();
+  let currentDate = new Date();
+  let currentDay = currentDate.getDate();
   let firstDayMonth = new Date(year, month, 1).getDay();
   let lastDayMonth = new Date(year, month + 1, 0).getDate();
 
@@ -56,14 +48,57 @@ function renderCalendar() {
 
   for (let i = 1; i < lastDayMonth + 1; i++) {
     let days = document.getElementById("days");
-    days.innerHTML += `<div class= "days" id = "day-${i}">${i}</div>`;
 
-    if (i === currentDay) {
-      days.classList.add("day-current");
-    }
+    days.innerHTML += `<div class= "${
+      i === currentDay && currentDate.getMonth() === month ? "day-current" : ""
+    } day" id = "day-${i}">${i}</div>`;
   }
-}
+  // Evento de click nos dias
+  let availableDays = [23, 24];
+  let daysList = document.querySelectorAll(".days div");
 
+  availableDays.forEach((day) => {
+    let dayElement = daysList[day];
+
+    dayElement.classList.add("day-available");
+
+    let rightContainer = document.querySelector(".right-container");
+    dayElement.addEventListener("click", () => {
+      rightContainer.classList.add("schedule");
+
+      let buttons = document.querySelector(".container-buttons");
+      buttons.classList.add("schedule");
+
+      daysList.forEach((dayElement) => {
+        dayElement.classList.remove("day-selected");
+      });
+
+      dayElement.classList.add("day-selected");
+
+      currentDate.setDate(day);
+      let selectedDay = document.getElementById("selected-day");
+      selectedDay.innerHTML = `<div>${dayWeeks[currentDate.getDay()]}, ${
+        months[date.getMonth()]
+      }, ${day}</div>`;
+    });
+
+    let duration60 = [
+      "13:00pm",
+      "14:00pm",
+      "15:00pm",
+      "16:00pm",
+      "17:00pm",
+      "18:00pm",
+    ];
+
+    let buttonsTime = document.querySelectorAll(".schedule");
+
+    buttonsTime.forEach((button, index) => {
+      button.textContent = duration60[index];
+    });
+  });
+}
+//-------------------------------
 btnNext.addEventListener("click", () => {
   month++;
   if (month > 11) {
