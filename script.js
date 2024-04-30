@@ -53,6 +53,7 @@ function renderCalendar() {
       i === currentDay && currentDate.getMonth() === month ? "day-current" : ""
     } day" id = "day-${i}">${i}</div>`;
   }
+
   // Evento de click nos dias
   let availableDays = [23, 24];
   let daysList = document.querySelectorAll(".days div");
@@ -76,28 +77,33 @@ function renderCalendar() {
       dayElement.classList.add("day-selected");
 
       currentDate.setDate(day);
+      console.log(currentDate, daysList);
       let selectedDay = document.getElementById("selected-day");
       selectedDay.innerHTML = `<div>${dayWeeks[currentDate.getDay()]}, ${
         months[date.getMonth()]
       }, ${day}</div>`;
     });
-
-    let duration60 = [
-      "13:00pm",
-      "14:00pm",
-      "15:00pm",
-      "16:00pm",
-      "17:00pm",
-      "18:00pm",
-    ];
-
-    let buttonsTime = document.querySelectorAll(".schedule");
-
-    buttonsTime.forEach((button, index) => {
-      button.textContent = duration60[index];
-    });
   });
 }
+
+let schedulesDay23 = [
+  "13:00pm",
+  "14:00pm",
+  "15:00pm",
+  "16:00pm",
+  "17:00pm",
+  "18:00pm",
+];
+
+let container = document.querySelector(".container-buttons");
+
+schedulesDay23.forEach((time) => {
+  const button = document.createElement("button");
+  button.textContent = time;
+  button.classList.add("schedule");
+  container.appendChild(button);
+});
+
 //-------------------------------
 btnNext.addEventListener("click", () => {
   month++;
