@@ -90,7 +90,7 @@ body {
 
 .days {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 3fr);
   justify-items: center;
   justify-content: center;
   width: 100%;
@@ -103,6 +103,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 10px;
 }
 
 .day-available {

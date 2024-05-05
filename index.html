@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Agendamento de Reunião</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./select-styles.css" />
     <link
@@ -28,8 +28,8 @@
           <div class="dropdown">
             <input type="text" placeholder="Pick a Duration" readonly />
             <ul class="options">
-              <li class="option" onclick="">30 minutes</li>
-              <li class="option" onclick="duration60()">60 minutes</li>
+              <li class="option" value="30">30 minutes</li>
+              <li class="option" value="60">60 minutes</li>
             </ul>
           </div>
         </div>
@@ -76,7 +76,7 @@
         </div>
       </div>
     </main>
-    <script src="./select-script.js"></script>
-    <script src="./script.js"></script>
+    <script defer src="../script.js"></script>
+    <script defer src="../select-script.js"></script>
   </body>
 </html>
