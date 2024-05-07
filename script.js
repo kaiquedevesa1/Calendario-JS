@@ -82,8 +82,6 @@ function renderCalendar() {
         let selectedDay = document.querySelectorAll("#selected-day");
         selectedDay.textContent = `<div>${dayWeeks[dayOfWeek]}, ${months[month]}, ${day}</div>`;
 
-        console.log(selectedDay);
-
         let schedules30 = [
           "13:30pm",
           "14:00pm",
