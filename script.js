@@ -29,7 +29,33 @@ let months = [
   "December",
 ];
 
-//Calendario
+let schedules30 = ["13:30pm", "14:00pm", "14:30pm", "15:00pm", "15:30pm"];
+let schedules60 = ["14:00pm", "15:00pm", "16:30pm", "17:30pm", "18:30pm"];
+let selectedDuration = "30"; // Valor padrão
+
+// Define valores iniciais dos inputs
+document.addEventListener("DOMContentLoaded", function () {
+  // Definindo o valor inicial do input de localização
+  document.getElementById("location-input").value = "Singapore";
+
+  // Definindo o valor inicial do input de duração
+  document.getElementById("duration-input").value = "30 minutes";
+
+  // Adicionar evento de clique para cada opção de duração
+  document.querySelectorAll(".dropdown .option").forEach((option) => {
+    option.addEventListener("click", function () {
+      let value = this.getAttribute("value");
+      document.getElementById("duration-input").value = this.innerText;
+      selectedDuration = value;
+      updateScheduleButtons();
+    });
+  });
+
+  // Renderiza o calendário
+  renderCalendar();
+});
+
+// Calendário
 function renderCalendar() {
   let currentDay = date.getDate();
   let firstDayMonth = new Date(year, month, 1).getDay();
@@ -54,81 +80,53 @@ function renderCalendar() {
   }
 
   // Evento de click nos dias
-  document.addEventListener("DOMContentLoaded", function () {
-    let availableDays = [23, 24];
+  let availableDays = [23, 24];
 
-    availableDays.forEach((day) => {
-      let daysList = document.querySelectorAll(".days .day");
-      let dayElement = daysList[day - 1];
+  availableDays.forEach((day) => {
+    let daysList = document.querySelectorAll(".days .day");
+    let dayElement = daysList[day - 1];
+    dayElement.classList.add("day-available");
 
-      dayElement.classList.add("day-available");
+    let rightContainer = document.querySelector(".right-container");
+    dayElement.addEventListener("click", () => {
+      rightContainer.classList.add("schedule");
 
-      let rightContainer = document.querySelector(".right-container");
-      dayElement.addEventListener("click", () => {
-        rightContainer.classList.add("schedule");
+      let buttons = document.querySelector(".container-buttons");
+      buttons.classList.add("schedule");
 
-        let buttons = document.querySelector(".container-buttons");
-        buttons.classList.add("schedule");
-
-        daysList.forEach((dayElement) => {
-          dayElement.classList.remove("day-selected");
-        });
-
-        dayElement.classList.add("day-selected");
-
-        let clickedDate = new Date(year, month, day);
-
-        let dayOfWeek = clickedDate.getDay();
-        let selectedDay = document.querySelectorAll("#selected-day");
-        selectedDay.textContent = `<div>${dayWeeks[dayOfWeek]}, ${months[month]}, ${day}</div>`;
-
-        let schedules30 = [
-          "13:30pm",
-          "14:00pm",
-          "14:30pm",
-          "15:00pm",
-          "15:30pm",
-        ];
-        let schedules60 = [
-          "14:00pm",
-          "15:00pm",
-          "16:30pm",
-          "17:30pm",
-          "18:30pm",
-        ];
-        let container = document.querySelector(".container-buttons");
-        let button = document.querySelector(".container-buttons");
-        let buttonDuration = document.querySelectorAll(".option");
-        buttonDuration.forEach((duration) => {
-          duration.addEventListener("click", () => {
-            let value = duration.value;
-
-            if (value == "30") {
-              button.innerHTML = "";
-
-              schedules30.forEach(function (item) {
-                const button = document.createElement("button");
-                button.textContent = item;
-                button.classList.add("schedule");
-                container.appendChild(button);
-              });
-            } else {
-              button.innerHTML = "";
-              schedules60.forEach(function (item) {
-                const button = document.createElement("button");
-                button.textContent = item;
-                button.classList.add("schedule");
-                container.appendChild(button);
-              });
-            }
-          });
-        });
+      daysList.forEach((dayElement) => {
+        dayElement.classList.remove("day-selected");
       });
+
+      dayElement.classList.add("day-selected");
+
+      let clickedDate = new Date(year, month, day);
+
+      let dayOfWeek = clickedDate.getDay();
+      let selectedDay = document.querySelector("#selected-day");
+      selectedDay.innerHTML = `<div>${dayWeeks[dayOfWeek]}, ${months[month]} ${day}</div>`;
+
+      updateScheduleButtons();
     });
   });
 }
 
-//-------------------------------
+// Função para atualizar os botões de horários
+function updateScheduleButtons() {
+  let container = document.querySelector(".container-buttons");
+  container.innerHTML = ""; // Limpa os botões antes de adicionar novos
+
+  let schedules = selectedDuration === "30" ? schedules30 : schedules60;
+
+  schedules.forEach(function (item) {
+    const button = document.createElement("button");
+    button.textContent = item;
+    button.classList.add("schedule");
+    container.appendChild(button);
+  });
+}
+
+// Navegação do calendário
 btnNext.addEventListener("click", () => {
   month++;
   if (month > 11) {
